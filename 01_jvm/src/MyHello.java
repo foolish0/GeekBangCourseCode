@@ -1,11 +1,11 @@
-public class Hello {
+public class MyHello {
     static {
         System.out.println("static body");
     }
 
     public static void main(String[] args) {
         System.out.println("main method");
-        Hello hello = new Hello();
+        MyHello hello = new MyHello();
         int n = 10, sub = 1, add = 10, mul = 2, div = 10;
         double result = 0.0;
 

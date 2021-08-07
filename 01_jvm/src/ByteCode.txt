@@ -1,8 +1,8 @@
-Classfile /Users/lizhenjiang/IdeaProjects/GeekBangCourseCode/01_jvm/src/Hello.class
-  Last modified 2021-8-4; size 988 bytes
-  MD5 checksum db94b8cf6735bb21bb1baac66923503f
-  Compiled from "Hello.java"
-public class Hello
+Classfile /Users/lizhenjiang/IdeaProjects/GeekBangCourseCode/01_jvm/src/MyHello.class
+  Last modified 2021-8-7; size 992 bytes
+  MD5 checksum 4ce5d8535d409211fdd878decdc1c8ac
+  Compiled from "MyHello.java"
+public class MyHello
   minor version: 0
   major version: 52
   flags: ACC_PUBLIC, ACC_SUPER
@@ -11,13 +11,13 @@ Constant pool:
    #2 = Fieldref           #34.#35        // java/lang/System.out:Ljava/io/PrintStream;
    #3 = String             #36            // main method
    #4 = Methodref          #37.#38        // java/io/PrintStream.println:(Ljava/lang/String;)V
-   #5 = Class              #39            // Hello
-   #6 = Methodref          #5.#33         // Hello."<init>":()V
+   #5 = Class              #39            // MyHello
+   #6 = Methodref          #5.#33         // MyHello."<init>":()V
    #7 = Double             100.0d
-   #9 = Methodref          #5.#40         // Hello.sub:(DD)D
-  #10 = Methodref          #5.#41         // Hello.div:(DD)D
-  #11 = Methodref          #5.#42         // Hello.mul:(DD)D
-  #12 = Methodref          #5.#43         // Hello.add:(DD)D
+   #9 = Methodref          #5.#40         // MyHello.sub:(DD)D
+  #10 = Methodref          #5.#41         // MyHello.div:(DD)D
+  #11 = Methodref          #5.#42         // MyHello.mul:(DD)D
+  #12 = Methodref          #5.#43         // MyHello.add:(DD)D
   #13 = Methodref          #37.#44        // java/io/PrintStream.println:(D)V
   #14 = String             #45            // static body
   #15 = Class              #46            // java/lang/Object
@@ -29,7 +29,7 @@ Constant pool:
   #21 = Utf8               ([Ljava/lang/String;)V
   #22 = Utf8               StackMapTable
   #23 = Class              #47            // "[Ljava/lang/String;"
-  #24 = Class              #39            // Hello
+  #24 = Class              #39            // MyHello
   #25 = Utf8               add
   #26 = Utf8               (DD)D
   #27 = Utf8               sub
@@ -37,14 +37,14 @@ Constant pool:
   #29 = Utf8               div
   #30 = Utf8               <clinit>
   #31 = Utf8               SourceFile
-  #32 = Utf8               Hello.java
+  #32 = Utf8               MyHello.java
   #33 = NameAndType        #16:#17        // "<init>":()V
   #34 = Class              #48            // java/lang/System
   #35 = NameAndType        #49:#50        // out:Ljava/io/PrintStream;
   #36 = Utf8               main method
   #37 = Class              #51            // java/io/PrintStream
   #38 = NameAndType        #52:#53        // println:(Ljava/lang/String;)V
-  #39 = Utf8               Hello
+  #39 = Utf8               MyHello
   #40 = NameAndType        #27:#26        // sub:(DD)D
   #41 = NameAndType        #29:#26        // div:(DD)D
   #42 = NameAndType        #28:#26        // mul:(DD)D
@@ -61,7 +61,7 @@ Constant pool:
   #53 = Utf8               (Ljava/lang/String;)V
   #54 = Utf8               (D)V
 {
-  public Hello();
+  public MyHello();
     descriptor: ()V
     flags: ACC_PUBLIC
     Code:
@@ -80,7 +80,7 @@ Constant pool:
          0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
          3: ldc           #3                  // String main method
          5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
-         8: new           #5                  // class Hello
+         8: new           #5                  // class MyHello
         11: dup
         12: invokespecial #6                  // Method "<init>":()V
         15: astore_1
@@ -149,7 +149,7 @@ Constant pool:
       StackMapTable: number_of_entries = 4
         frame_type = 255 /* full_frame */
           offset_delta = 38
-          locals = [ class "[Ljava/lang/String;", class Hello, int, int, int, int, int, double, int ]
+          locals = [ class "[Ljava/lang/String;", class MyHello, int, int, int, int, int, double, int ]
           stack = []
         frame_type = 37 /* same */
         frame_type = 9 /* same */
@@ -169,4 +169,4 @@ Constant pool:
         line 3: 0
         line 4: 8
 }
-SourceFile: "Hello.java"
+SourceFile: "MyHello.java"
