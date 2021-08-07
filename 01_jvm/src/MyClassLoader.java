@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -26,7 +25,7 @@ public class MyClassLoader extends ClassLoader{
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
-        byte[] bytes = getBytesFromFile("/Users/lizhenjiang/IdeaProjects/GeekBangCourseCode/01_jvm/src/Hello.xlass");
+        byte[] bytes = getBytesFromFile("/Users/lizhenjiang/IdeaProjects/GeekBangCourseCode/01_jvm/src/resources/Hello.xlass");
         return defineClass(name, bytes, 0, bytes.length);
     }
 
@@ -47,12 +46,8 @@ public class MyClassLoader extends ClassLoader{
                 e.printStackTrace();
             }
         } else {
-            print("no file!");
+            System.out.println("no file!");
         }
         return new byte[1024];
-    }
-
-    private static void print(String msg) {
-        System.out.println(msg);
     }
 }
