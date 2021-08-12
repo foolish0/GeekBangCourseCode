@@ -2,6 +2,9 @@ import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+/**
+ * @author lizhenjiang
+ */
 public class MyClassLoader extends ClassLoader{
     public static void main(String[] args) {
         try {
@@ -41,6 +44,7 @@ public class MyClassLoader extends ClassLoader{
                         bytes[i] = (byte) (255 ^ bytes[i]);
                     }
                 }
+                fileInputStream.close();
                 return bytes;
             } catch (IOException e) {
                 e.printStackTrace();
