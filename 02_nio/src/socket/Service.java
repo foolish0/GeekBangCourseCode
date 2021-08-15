@@ -17,11 +17,11 @@ public class Service {
             String body = "hello,nio";
             printWriter.println("Content-Length:" + body.getBytes().length);
             printWriter.println();
-            body = body.toUpperCase(Locale.getDefault());
-            String[] strings = body.split(",");
-            for (String str : strings) {
-                printWriter.write(str);
-            }
+//            body = body.toUpperCase(Locale.getDefault());
+//            String[] strings = body.split(",");
+//            for (String str : strings) {
+//                printWriter.write(str);
+//            }
             printWriter.write(body);
             printWriter.close();
             socket.close();
