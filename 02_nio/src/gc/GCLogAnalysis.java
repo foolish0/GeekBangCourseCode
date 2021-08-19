@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.LongAdder;
 演示GC日志生成与解读
 **/
 public class GCLogAnalysis {
-    private static Random random = new Random();
+    private static final Random random = new Random();
     public static void main(String[] args) {
         // 当前毫秒时间戳
         long startMillis = System.currentTimeMillis();
