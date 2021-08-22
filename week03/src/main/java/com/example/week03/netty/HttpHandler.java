@@ -6,6 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.util.ReferenceCountUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,9 +15,11 @@ import static io.netty.handler.codec.http.HttpHeaderValues.KEEP_ALIVE;
 /**
  * @author lizhenjiang
  */
+@Slf4j
 public class HttpHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+        ctx.write("客户端收到消息！");
         ctx.flush();
     }
 
@@ -25,6 +28,7 @@ public class HttpHandler extends ChannelInboundHandlerAdapter {
         try {
             String URL_TEST = "/test";
             FullHttpRequest request = (FullHttpRequest) msg;
+            log.info("\n#######request:######\n{}", request);
             String uri = request.uri();
             if (uri.contains(URL_TEST)) {
                 handlerDemo(request, ctx, "Hello, GabrielLea");

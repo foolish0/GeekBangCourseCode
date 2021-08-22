@@ -10,14 +10,20 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author lizhenjiang
  */
+@Slf4j
 public class NettyHttpServer {
-    public static void main(String[] args) throws InterruptedException {
-        int port = 8808;
+    private final int port;
 
+    public NettyHttpServer(int port) {
+        this.port = port;
+    }
+
+    public void accept() throws InterruptedException{
         EventLoopGroup bossGroup = new NioEventLoopGroup(2);
         EventLoopGroup workGroup = new NioEventLoopGroup(16);
 
@@ -37,11 +43,20 @@ public class NettyHttpServer {
                     .childHandler(new HttpInitializer());
 
             Channel channel = bootstrap.bind(port).sync().channel();
-            System.out.println("开启Netty http服务器，监听地址：http://localhost:" + port + "/");
+            log.info("开启Netty http服务器，监听地址：http://localhost:" + port + "/");
             channel.closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
+        }
+    }
+
+    public static void main(String[] args) {
+        NettyHttpServer nettyHttpServer = new NettyHttpServer(8808);
+        try {
+            nettyHttpServer.accept();
+        } catch (InterruptedException e) {
+            System.out.println("服务端启动出错！");
         }
     }
 }
