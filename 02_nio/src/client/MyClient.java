@@ -16,7 +16,8 @@ import java.io.IOException;
  */
 public class MyClient {
     public static void main(String[] args) throws IOException {
-        String url = "http://localhost:8881";
+        // 访问NettyHttpServer监听的8808端口
+        String url = "http://localhost:8808/test";
         String responseBody = getMethodWithHttpClient(url);
         System.out.println("response:\n" + responseBody);
     }

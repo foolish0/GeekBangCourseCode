@@ -1,6 +1,5 @@
-package netty;
+package com.example.week03.netty;
 
-import com.sun.jnlp.JNLPCachedJarURLConnection;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;

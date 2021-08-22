@@ -15,7 +15,7 @@ public class SocketServer02 {
         while (true) {
             Socket socket = serverSocket.accept();
             new Thread(() -> {
-                service(socket);
+                service(socket, "SocketServer02");
             }).start();
         }
     }

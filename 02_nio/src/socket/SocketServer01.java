@@ -14,7 +14,7 @@ public class SocketServer01 {
         ServerSocket serverSocket = new ServerSocket(8881);
         while (true) {
             Socket socket = serverSocket.accept();
-            service(socket);
+            service(socket, "SocketServer01");
         }
     }
 }

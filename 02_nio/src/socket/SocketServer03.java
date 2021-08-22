@@ -21,7 +21,7 @@ public class SocketServer03 {
         final ServerSocket serverSocket = new ServerSocket(8883);
         while (true) {
             final Socket socket = serverSocket.accept();
-            executorService.execute(() -> service(socket));
+            executorService.execute(() -> service(socket, "SocketServer03"));
         }
     }
 }

@@ -9,12 +9,12 @@ import java.util.Locale;
  * @author lizhenjiang
  */
 public class Service {
-    public static void service(Socket socket) {
+    public static void service(Socket socket, String body) {
         try {
             PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
             printWriter.println("HTTP/1.1 200 OK");
             printWriter.println("Content-Type:text/html;charset=utf-8");
-            String body = "hello,nio";
+//            String body = "hello,nio";
             printWriter.println("Content-Length:" + body.getBytes().length);
             printWriter.println();
 //            body = body.toUpperCase(Locale.getDefault());

@@ -1,4 +1,4 @@
-package netty;
+package com.example.week03.netty;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
