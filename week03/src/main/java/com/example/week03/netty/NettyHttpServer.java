@@ -35,7 +35,7 @@ public class NettyHttpServer {
                     .childOption(ChannelOption.SO_REUSEADDR, true)
                     .childOption(ChannelOption.SO_RCVBUF, 32*1024)
                     .childOption(ChannelOption.SO_SNDBUF, 32*1024)
-                    .childOption(EpollChannelOption.SO_REUSEPORT, true)
+//                    .childOption(EpollChannelOption.SO_REUSEPORT, true)
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)

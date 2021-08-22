@@ -1,5 +1,6 @@
 package com.example.week03.netty;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -7,7 +8,11 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.*;
 import io.netty.util.ReferenceCountUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static io.netty.handler.codec.http.HttpHeaderValues.KEEP_ALIVE;
@@ -16,30 +21,23 @@ import static io.netty.handler.codec.http.HttpHeaderValues.KEEP_ALIVE;
  * @author lizhenjiang
  */
 @Slf4j
-public class HttpHandler extends ChannelInboundHandlerAdapter {
+public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        ctx.write("客户端收到消息！");
+        ctx.write("服务端收到消息！");
         ctx.flush();
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        try {
-            String URL_TEST = "/test";
-            FullHttpRequest request = (FullHttpRequest) msg;
-            log.info("\n#######request:######\n{}", request);
-            String uri = request.uri();
-            if (uri.contains(URL_TEST)) {
-                handlerDemo(request, ctx, "Hello, GabrielLea");
-            } else {
-                handlerDemo(request, ctx, "Hello, guest");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ReferenceCountUtil.release(msg);
-        }
+        FullHttpRequest request = (FullHttpRequest) msg;
+        String url = "http://localhost:8808";
+        url = url + request.uri();
+        HttpGet httpGet = new HttpGet(url);
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        httpClient.execute(httpGet);
+
+
     }
 
     private void handlerDemo(FullHttpRequest request, ChannelHandlerContext ctx, String body) {
