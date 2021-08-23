@@ -17,32 +17,42 @@ public class Week03Application {
         //        SpringApplication.run(Week03Application.class, args);
         //    }
         int port = 8808;
-        Runnable server = () -> {
-            NettyHttpServer nettyHttpServer = new NettyHttpServer(port);
-            try {
-                nettyHttpServer.accept();
-            } catch (InterruptedException e) {
-                log.error("服务端启动出错: {}", e.getMessage());
-            }
-        };
+
+        NettyHttpServer server = new NettyHttpServer(port, "http://localhost:8881");
+
+        try {
+            server.accept();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
-        Runnable client = () -> {
-            NettyClient nettyClient = new NettyClient("http://localhost", port);
-            try {
-                nettyClient.access();
-            } catch (InterruptedException e) {
-                log.error("客户端异常:{}", e.getMessage());
-            }
-        };
-
-        Thread serverThread = new Thread(server);
-        log.info("启动客户端.....");
-        serverThread.start();
-
-        Thread clientThread = new Thread(client);
-        log.info("启动客户端.....");
-        clientThread.start();
+//        Runnable server = () -> {
+//            NettyHttpServer nettyHttpServer = new NettyHttpServer(port);
+//            try {
+//                nettyHttpServer.accept();
+//            } catch (InterruptedException e) {
+//                log.error("服务端启动出错: {}", e.getMessage());
+//            }
+//        };
+//
+//
+//        Runnable client = () -> {
+//            NettyClient nettyClient = new NettyClient("http://localhost", port);
+//            try {
+//                nettyClient.access();
+//            } catch (InterruptedException e) {
+//                log.error("客户端异常:{}", e.getMessage());
+//            }
+//        };
+//
+//        Thread serverThread = new Thread(server);
+//        log.info("启动客户端.....");
+//        serverThread.start();
+//
+//        Thread clientThread = new Thread(client);
+//        log.info("启动客户端.....");
+//        clientThread.start();
     }
 
 }

@@ -17,6 +17,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 
+import org.apache.http.impl.nio.client.HttpAsyncClients;
+import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
@@ -24,15 +26,16 @@ import static io.netty.handler.codec.http.HttpResponseStatus.NO_CONTENT;
 import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
-public class ServerOutboundHanndler {
+public class ServerOutboundHandler {
     private final String backUrl;
     private final CloseableHttpAsyncClient httpClient;
 
     ResponseFilter filter = (response) -> response.headers().set("Name", "Gabriel");
 
-    public ServerOutboundHanndler(String backUrl) {
+    public ServerOutboundHandler(String backUrl) {
         this.backUrl = backUrl;
 
+        int cores = Runtime.getRuntime().availableProcessors();
         IOReactorConfig ioConfig = IOReactorConfig.custom()
                 .setConnectTimeout(1000)
                 .setSoTimeout(1000)
@@ -40,18 +43,19 @@ public class ServerOutboundHanndler {
                 .setRcvBufSize(32 * 1024)
                 .build();
 
-        httpclient = HttpAsyncClients.custom().setMaxConnTotal(40)
+        httpClient = HttpAsyncClients.custom().setMaxConnTotal(40)
                 .setMaxConnPerRoute(8)
                 .setDefaultIOReactorConfig(ioConfig)
                 .setKeepAliveStrategy((response,context) -> 6000)
                 .build();
-        httpclient.start();
+        httpClient.start();
     }
 
     public void handle(FullHttpRequest fullHttpRequest,
                        ChannelHandlerContext ctx,
                        RequestFilter filter) {
         String url = backUrl + fullHttpRequest.uri();
+        filter.filter(fullHttpRequest, ctx);
         httpGet(fullHttpRequest, ctx, url);
     }
 

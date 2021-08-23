@@ -18,9 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class NettyHttpServer {
     private final int port;
+    private String url;
 
-    public NettyHttpServer(int port) {
+    public NettyHttpServer(int port, String url) {
         this.port = port;
+        this.url = url;
     }
 
     public void accept() throws InterruptedException{
@@ -40,7 +42,7 @@ public class NettyHttpServer {
             bootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new HttpInitializer());
+                    .childHandler(new HttpInitializer(this.url));
 
             Channel channel = bootstrap.bind(port).sync().channel();
             log.info("开启Netty http服务器，监听地址：http://localhost:" + port + "/");
@@ -51,12 +53,4 @@ public class NettyHttpServer {
         }
     }
 
-    public static void main(String[] args) {
-        NettyHttpServer nettyHttpServer = new NettyHttpServer(8808);
-        try {
-            nettyHttpServer.accept();
-        } catch (InterruptedException e) {
-            System.out.println("服务端启动出错！");
-        }
-    }
 }
