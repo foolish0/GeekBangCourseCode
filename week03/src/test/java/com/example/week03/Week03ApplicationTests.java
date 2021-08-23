@@ -10,4 +10,12 @@ class Week03ApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    public void sub() {
+        String backend = "123.3.3.3/";
+        String result = backend.endsWith("/") ? backend.substring(0, backend.length() - 1) : backend;
+
+        assert backend.equals(result + "/");
+    }
+
 }

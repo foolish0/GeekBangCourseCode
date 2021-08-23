@@ -21,7 +21,7 @@ import static io.netty.handler.codec.http.HttpHeaderValues.KEEP_ALIVE;
  * @author lizhenjiang
  */
 @Slf4j
-public class ServerHandler extends ChannelInboundHandlerAdapter {
+public class ServerInboundHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.write("服务端收到消息！");
