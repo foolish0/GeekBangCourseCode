@@ -233,3 +233,16 @@ jvm内存和启动参数对应关系：/otherFiles/启动参数对应内存结�
 
 ### Week03
 代码所在包在week03模块
+
+
+### Week04
+
+多线程
+
+![image](week04/src/main/resources/image/image00.png)
+![image](week04/src/main/resources/image/image01.png)
+![image](week04/src/main/resources/image/image02.png)
+![image](week04/src/main/resources/image/image03.png)
+![image](week04/src/main/resources/image/image04.png)
+![image](week04/src/main/resources/image/image05.png)
+![image](week04/src/main/resources/image/image06.png)
