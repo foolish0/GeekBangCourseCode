@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <beans>
+
+
+        <bean id="student01" class="com.gabriel.week05.entity.Student">
+            <property name="id" value="1"/>
+            <property name="name" value="张三"/>
+        </bean>
+        <bean id="student02" class="com.gabriel.week05.entity.Student">
+            <property name="id" value="2"/>
+            <property name="name" value="李四"/>
+        </bean>
+
+        <context:component-scan base-package="com.gabriel.week05"/>
+
+        <bean id="class01" class="com.gabriel.week05.entity.Klass">
+            <property name="students">
+                <list>
+                    <ref bean="student01"/>
+                    <ref bean="student02"/>
+                </list>
+            </property>
+        </bean>
+
+        <bean id="aop1" class="com.gabriel.week05.aop.Aop01"/>
+        <bean id="aop2" class="com.gabriel.week05.aop.Aop02"/>
+        <aop:aspectj-autoproxy/>
+        <aop:config>
+            <!-- 切点 -->
+            <aop:pointcut id="point01" expression="execution(* com.gabriel.week05.entity.*.class*(..))"/>
+            <!-- 切面 -->
+            <aop:aspect ref="aop1">
+                <aop:around method="around" pointcut-ref="point01"/>
+                <aop:before method="beforeMyAop" pointcut-ref="point01"/>
+                <aop:after-returning method="afterMyAop" pointcut-ref="point01"/>
+            </aop:aspect>
+        </aop:config>
+
+        <bean id="school" class="com.gabriel.week05.entity.School">
+            <property name="klass" ref="class01"/>
+            <property name="student" ref="student02"/>
+        </bean>
+
+    </beans>
+</beans>

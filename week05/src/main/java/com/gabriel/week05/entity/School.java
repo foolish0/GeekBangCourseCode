@@ -1,7 +1,6 @@
-package com.gabriel.week05.demo02;
+package com.gabriel.week05.entity;
 
 import com.gabriel.week05.aop.ISchool;
-import com.gabriel.week05.demo01.Student;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +11,10 @@ public class School implements ISchool {
     @Autowired
     Klass klass;
 
-    @Resource(name = "student001")
+//    @Autowired
+//    Student another;
+
+    @Resource(name = "student01")
     Student student;
 
     @Override

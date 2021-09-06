@@ -1,10 +1,7 @@
 package com.gabriel.week05.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 
 @Aspect
 public class Aop02 {
@@ -23,6 +20,7 @@ public class Aop02 {
         System.out.println("#### after interfaceAop #### ====>4");
     }
 
+    @Around(value = "point()")
     public void around(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("#### before around interfaceAop #### ====>1");
 

@@ -253,7 +253,24 @@ jvm内存和启动参数对应关系：/otherFiles/启动参数对应内存结�
 
 - [ ] 1.（选做）使 Java 里的动态代理，实现一个简单的 AOP。
 ---
-- [ ] 2.（必做）写代码实现 Spring Bean 的装配，方式越多越好（XML、Annotation 都可以）, 提交到 GitHub。
+- [x] 2.（必做）写代码实现 Spring Bean 的装配，方式越多越好（XML、Annotation 都可以）, 提交到 GitHub。
+
+  方法1：通过xml配置
+  
+  week05/src/main/resource/beanConfig.xml
+  
+  方法2：通过java代码配置
+
+  week05/src/main/java/com/gabriel/week05/beandemo/BeanConfig.java
+  
+  方法3：利用spring boot的注解自动装配
+
+  week05/src/main/java/com/gabriel/week05/entity/School.java中：
+  
+  @Autowire通过类型注入Klass
+  
+  @Resource通过名称注入Student
+
 ---
 - [ ] 3.（选做）实现一个 Spring XML 自定义配置，配置一组 Bean，例如：Student/Klass/School。
 ---
