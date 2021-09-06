@@ -289,7 +289,7 @@ jvm内存和启动参数对应关系：/otherFiles/启动参数对应内存结�
 ---
 - [ ] 7.（选做）总结 Hibernate 与 MyBatis 的各方面异同点。
 ---
-- [ ] 8.（必做）给前面课程提供的 Student/Klass/School 实现自动配置和 Starter。
+- [x] 8.（必做）给前面课程提供的 Student/Klass/School 实现自动配置和 Starter。
 ---
 - [ ] 9.（选做）学习 MyBatis-generator 的用法和原理，学会自定义 TypeHandler 处理复杂类型。
 ---
