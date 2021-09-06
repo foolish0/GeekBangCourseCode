@@ -271,6 +271,8 @@ jvm内存和启动参数对应关系：/otherFiles/启动参数对应内存结�
   
   @Resource通过名称注入Student
 
+  方法4：利用spring profile实现不同环境差异化装配bean（还没实现代码，只大概了解了下过程）
+
 ---
 - [ ] 3.（选做）实现一个 Spring XML 自定义配置，配置一组 Bean，例如：Student/Klass/School。
 ---
