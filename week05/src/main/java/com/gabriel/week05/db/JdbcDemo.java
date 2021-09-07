@@ -1,13 +1,24 @@
 package com.gabriel.week05.db;
 
+import com.sun.glass.ui.Application;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.sql.*;
 
-public class JdbcDemo {
+@SpringBootApplication
+public class JdbcDemo implements CommandLineRunner {
     public static void main(String[] args) {
+        SpringApplication.run(JdbcDemo.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
         // 原生JDBC
-//        jdbcTest();
+        jdbcTest();
         // PreparedStatement
-//        preparedStatementTest();
+        preparedStatementTest();
         // 批处理
         batch();
     }
@@ -33,7 +44,7 @@ public class JdbcDemo {
      * 原生JDBC实现增删改查
      */
     public static void jdbcTest() {
-        Connection connection = getConnection();
+        Connection connection = JdbcUtils.getConnection();
         Statement statement = null;
         ResultSet rs = null;
         try {
@@ -75,7 +86,7 @@ public class JdbcDemo {
      * 使用PreparedStatement
      */
     public static void preparedStatementTest() {
-        Connection connection = getConnection();
+        Connection connection = JdbcUtils.getConnection();
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
@@ -119,7 +130,7 @@ public class JdbcDemo {
     }
 
     public static void batch() {
-        Connection connection = getConnection();
+        Connection connection = JdbcUtils.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
