@@ -4,7 +4,10 @@ import java.sql.*;
 
 public class JdbcDemo {
     public static void main(String[] args) {
-        jdbcTest();
+        // 原生JDBC
+//        jdbcTest();
+        // PreparedStatement
+        preparedStatementTest();
     }
 
     private static Connection getConnection() {
@@ -24,6 +27,9 @@ public class JdbcDemo {
         return con;
     }
 
+    /**
+     * 原生JDBC实现增删改查
+     */
     public static void jdbcTest() {
         Connection connection = getConnection();
         Statement statement = null;
@@ -58,30 +64,82 @@ public class JdbcDemo {
             e.printStackTrace();
         } finally {
             // 6、释放资源
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException throwable) {
-                    throwable.printStackTrace();
-                }
-                connection = null;
+            release(connection, statement, rs);
+        }
+    }
+
+
+    /**
+     * 使用PreparedStatement
+     */
+    public static void preparedStatementTest() {
+        Connection connection = getConnection();
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            // 删
+            statement = connection.prepareStatement(
+                    "delete from students where id = ?"
+            );
+            statement.setInt(1, 1);
+            statement.executeUpdate();
+            // 增
+            statement = connection.prepareStatement(
+                    "insert into students(id, name) values ( ?,? )"
+            );
+            statement.setInt(1, 1);
+            statement.setString(2, "Gabriel");
+            statement.executeUpdate();
+            // 改
+            statement = connection.prepareStatement(
+                    "update students set name = ? where id = ?"
+            );
+            statement.setString(1, "Johnson");
+            statement.setInt(2, 1);
+            statement.executeUpdate();
+            // 查
+            statement = connection.prepareStatement(
+                    "select * from students"
+            );
+            rs = statement.executeQuery();
+            // 5、遍历结果
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                System.out.println("[Student-" + id + ": " + name + "]");
             }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException throwable) {
-                    throwable.printStackTrace();
-                }
-                statement = null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // 6、释放资源
+            release(connection, statement, rs);
+        }
+    }
+
+    private static void release(Connection connection, Statement statement, ResultSet rs) {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
             }
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException throwable) {
-                    throwable.printStackTrace();
-                }
-                rs = null;
+            connection = null;
+        }
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
             }
+            statement = null;
+        }
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
+            }
+            rs = null;
         }
     }
 }
