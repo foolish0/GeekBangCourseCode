@@ -7,7 +7,9 @@ public class JdbcDemo {
         // 原生JDBC
 //        jdbcTest();
         // PreparedStatement
-        preparedStatementTest();
+//        preparedStatementTest();
+        // 批处理
+        batch();
     }
 
     private static Connection getConnection() {
@@ -113,6 +115,25 @@ public class JdbcDemo {
         } finally {
             // 6、释放资源
             release(connection, statement, rs);
+        }
+    }
+
+    public static void batch() {
+        Connection connection = getConnection();
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            for (int i = 10; i < 20; i++) {
+                String sql = "insert into students(id, name) values ("
+                        + i + ", 'name-" + i +"')";
+                statement.addBatch(sql);
+            }
+            statement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // 6、释放资源
+            release(connection, statement, null);
         }
     }
 
