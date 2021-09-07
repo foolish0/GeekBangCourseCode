@@ -4,8 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "gabriel.student")
 public class StudentProperties {
-    private final Integer DEFAULT_ID = 99;
-    private final String DEFAULT_NAME = "ROBOT";
+    private final static Integer DEFAULT_ID = 99;
+    private final static String DEFAULT_NAME = "ROBOT";
     private Integer id;
     private String name;
 
@@ -17,7 +17,7 @@ public class StudentProperties {
         this.name = name;
     }
 
-    public final StudentProperties defaultStudentProperties() {
+    public static StudentProperties defaultStudentProperties() {
         return new StudentProperties(DEFAULT_ID, DEFAULT_NAME);
     }
 
