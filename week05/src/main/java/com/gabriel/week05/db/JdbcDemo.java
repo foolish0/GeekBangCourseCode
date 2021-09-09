@@ -77,7 +77,7 @@ public class JdbcDemo implements CommandLineRunner {
             e.printStackTrace();
         } finally {
             // 6、释放资源
-            release(connection, statement, rs);
+            JdbcUtils.release(connection, statement, rs);
         }
     }
 
@@ -125,7 +125,7 @@ public class JdbcDemo implements CommandLineRunner {
             e.printStackTrace();
         } finally {
             // 6、释放资源
-            release(connection, statement, rs);
+            JdbcUtils.release(connection, statement, rs);
         }
     }
 
@@ -144,34 +144,7 @@ public class JdbcDemo implements CommandLineRunner {
             e.printStackTrace();
         } finally {
             // 6、释放资源
-            release(connection, statement, null);
-        }
-    }
-
-    private static void release(Connection connection, Statement statement, ResultSet rs) {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException throwable) {
-                throwable.printStackTrace();
-            }
-            connection = null;
-        }
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException throwable) {
-                throwable.printStackTrace();
-            }
-            statement = null;
-        }
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException throwable) {
-                throwable.printStackTrace();
-            }
-            rs = null;
+            JdbcUtils.release(connection, statement, null);
         }
     }
 }
