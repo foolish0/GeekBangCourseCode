@@ -305,3 +305,7 @@ jvm内存和启动参数对应关系：/otherFiles/启动参数对应内存结�
 - [ ] (挑战) 基于 AOP 和自定义注解，实现 @MyCache(60) 对于指定方法返回值缓存 60 秒。
 - [ ] (挑战) 自定义实现一个数据库连接池，并整合 Hibernate/Mybatis/Spring/SpringBoot。
 - [ ] (挑战) 基于 MyBatis 实现一个简单的分库分表 + 读写分离 + 分布式 ID 生成方案。
+
+### Week05
+
+订单系统表结构：Week06/sql/init.sql
